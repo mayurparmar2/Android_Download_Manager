@@ -10,14 +10,16 @@
         <EditText
             android:layout_weight="1"
             android:id="@+id/input"
+            android:text="https://files.testfile.org/PDF/100MB-TESTFILE.ORG.pdf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
         <Button
-            android:text="PASTE"
             android:id="@+id/paste"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_weight="3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="PASTE" />
     </LinearLayout>
 </RelativeLayout>

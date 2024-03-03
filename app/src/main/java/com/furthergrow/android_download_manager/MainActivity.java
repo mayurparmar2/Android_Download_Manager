@@ -77,7 +77,17 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
                 }
             }
         }
-        downloadAdapter=new DownloadAdapter(MainActivity.this,downloadModels,MainActivity.this);
+        downloadAdapter=new DownloadAdapter(MainActivity.this, downloadModels, new ItemClickListener() {
+            @Override
+            public void onCLickItem(String file_path) {
+
+            }
+
+            @Override
+            public void onShareClick(DownloadModel downloadModel) {
+
+            }
+        });
         data_list.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         data_list.setAdapter(downloadAdapter);
 

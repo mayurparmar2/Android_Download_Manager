@@ -1,5 +1,6 @@
 package com.furthergrow.android_download_manager;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
@@ -67,7 +68,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         final DownloadModel downloadModel=downloadModels.get(position);
         final DownloadViewHolder downloadViewHolder= (DownloadViewHolder) holder;
 
