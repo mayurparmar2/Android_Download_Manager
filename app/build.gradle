@@ -3,32 +3,35 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
-//apply plugin: 'com.android.application'
-//apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'realm-android'
-
-
-
-
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
+    namespace 'com.furthergrow.android_download_manager'
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.furthergrow.android_download_manager"
-        minSdkVersion 16
-        targetSdkVersion 29
+        minSdkVersion 19
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        //        ndk {
+//            abiFilters 'arm64-v8a', 'armeabi-v7a'
+//        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -36,14 +39,31 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation 'androidx.appcompat:appcompat:1.3.1'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+//    implementation 'com.github.bumptech.glide:glide:4.9.0'
+//    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.7.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
+
+//    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.30.1'
+
+//    implementation 'androidx.appcompat:appcompat:1.1.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+//    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+//    implementation 'androidx.cardview:cardview:1.0.0'
+
+
+
+//    implementation 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
+
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
 }

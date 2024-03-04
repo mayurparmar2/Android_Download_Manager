@@ -1,5 +1,6 @@
 package com.furthergrow.android_download_manager.myProject
 
+import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -14,8 +15,6 @@ import android.os.Environment
 import android.util.Log
 import android.webkit.URLUtil
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.furthergrow.android_download_manager.DownloadModel
 import com.furthergrow.android_download_manager.R
 import io.realm.Realm
 import io.realm.RealmResults
@@ -41,7 +40,11 @@ class PdfDownloadList() : AppCompatActivity(){
                 applicationContext,
                 dModellist,
                 object : DownloadAdpater.OnClickListenerMe {
-                    override fun onClick() {
+                    override fun onClick(downloadId: Long) {
+
+                        val myIntent = Intent(this@PdfDownloadList,ActivityView::class.java)
+                        myIntent.putExtra("downloadId", downloadId);
+                        startActivity(myIntent);
 
                     }
                 })
@@ -81,6 +84,7 @@ class PdfDownloadList() : AppCompatActivity(){
     }
 
     var onComplete: BroadcastReceiver = object : BroadcastReceiver() {
+        @SuppressLint("Range")
         override fun onReceive(context: Context, intent: Intent) {
             val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
             downloadAdpater?.let {
@@ -161,6 +165,7 @@ class PdfDownloadList() : AppCompatActivity(){
             return null
         }
 
+        @SuppressLint("Range")
         private fun downloadFileProcess(downloadId: String?) {
             val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
             var downloading = true
@@ -212,6 +217,7 @@ class PdfDownloadList() : AppCompatActivity(){
 
 
 
+    @SuppressLint("Range")
     private fun getStatusMessage(cursor: Cursor): String? {
         var msg = "-"
         msg = when (cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))) {

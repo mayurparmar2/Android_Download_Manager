@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.furthergrow.android_download_manager.R
 import io.realm.Realm
@@ -14,10 +15,11 @@ class DownloadAdpater(var context: Context,var list:ArrayList<DModel>,var onClic
 
 
     interface OnClickListenerMe {
-        fun onClick()
+        fun onClick(downloadId: Long)
     }
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
          var status: TextView
+         var main_con: ConstraintLayout
          var txtTitle: TextView
          var txtpercentage: TextView
          var progressBar: ProgressBar
@@ -26,6 +28,7 @@ class DownloadAdpater(var context: Context,var list:ArrayList<DModel>,var onClic
             status = itemView.findViewById<TextView>(R.id.textView1)
             txtpercentage = itemView.findViewById<TextView>(R.id.textView2)
             progressBar = itemView.findViewById<ProgressBar>(R.id.progressBar)
+            main_con = itemView.findViewById<ConstraintLayout>(R.id.main_con)
         }
     }
 
@@ -40,10 +43,12 @@ class DownloadAdpater(var context: Context,var list:ArrayList<DModel>,var onClic
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = list[position]
-
         holder.txtTitle.text = model.title
         holder.status.text = model.status
         holder.progressBar.progress = model.progress!!.toInt()
+        holder.main_con.setOnClickListener(View.OnClickListener {
+            onClick.onClick(model.downloadId)
+        })
 
 
     }

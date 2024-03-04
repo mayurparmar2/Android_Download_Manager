@@ -16,14 +16,17 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".myProject.SplashScreen">
+        <activity android:name=".myProject.ActivityView"/>
+        <activity android:name=".myProject.SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".myProject.PdfDownloadList">
+        <activity android:name=".myProject.PdfDownloadList"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
